@@ -1,0 +1,19 @@
+package(default_visibility = ['//visibility:public'])
+
+alias(
+    name = "tab_python_runtime",
+    actual = select({
+        "@bazel_tools//src/conditions:windows": "@python_windows//:tab_python_runtime",
+        "//conditions:default": "@python_linux//:tab_python_runtime",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@python_osx//:tab_python_runtime",
+    }),
+)
+
+alias(
+    name = "all_python_files",
+    actual = select({
+        "@bazel_tools//src/conditions:windows": "@python_windows//:all_python_files",
+        "//conditions:default": "@python_linux//:all_python_files",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@python_osx//:all_python_files",
+    }),
+)
