@@ -16,16 +16,16 @@ http_archive(
     url = "https://www.python.org/ftp/python/3.8.5/python-3.8.5-embed-amd64.zip", 
 )
 
-http_archive(
-    name = "python_osx",
-    build_file = "//thirdparty/python:python_osx.BUILD",
-    url = "", 
+new_local_repository(
+    name = "python_linux",
+    path = "./pseudo_python/",
+    build_file = "//thirdparty/python:python_posix.BUILD",
 )
 
-http_archive(
-    name = "python_linux",
-    build_file = "//thirdparty/python:python_linux.BUILD",
-    url = "", 
+new_local_repository(
+    name = "python_osx",
+    path = "./pseudo_python/",
+    build_file = "//thirdparty/python:python_posix.BUILD",
 )
 
 register_toolchains(":tab_python_toolchain")
